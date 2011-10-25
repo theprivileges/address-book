@@ -1,0 +1,63 @@
+<?php
+/**
+ * Address Book Application
+ *
+ * @package Address_Book
+ * @author Luiz Lopes <luizlopes@gmail.com>
+ */
+
+// Add new entry url
+$addEntryUrl = $this->url(array('controller' => 'index',
+                                'action' => 'add'));
+
+?>
+<h2><?php echo $this->escape($this->title); ?></h2>
+<?php if ($this->formResponse):?>
+<p class="center notice"><?php echo $this->formResponse; ?></p>
+<?php endif; ?>
+<div id="sidebar" class="center">
+<p>
+    <a href="<?php echo $this->url(array('controller'=>'index',
+                                         'action'=>'add')); ?>"
+     class="button orange" title="Add a new device">Add New Address</a>
+</p>
+</div>
+<div id="content">
+<table>
+<thead>
+    <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+    </tr>
+
+</thead>
+<tbody>
+<?php if (!null == $this->entry): ?>
+    <?php foreach($this->entry as $entry): ?>
+    <tr>
+        <td>
+            <?php
+            // View details of an entry
+            $entryUrl = $this->url(array('controller' => 'index',
+                                         'action' => 'view',
+                                         'id' => $this->escape($entry->id)));
+            ?>
+            <a href="<?php echo $entryUrl; ?>" title="Click to view more info">
+            <?php
+            echo  $this->escape($entry->id); ?></a></td>
+        <td><?php echo $this->escape($entry->firstname); ?></td>
+        <td><?php echo $this->escape($entry->lastname); ?></td>
+        <td><?php echo $this->escape($entry->phone); ?></td>
+        <td><?php echo $this->escape($entry->email); ?></td>
+    </tr>
+    <?php endforeach ?>
+<?php else: ?>
+    <tr><td colspan="3">There are no entries at the moment. Please
+            <a href="<?php echo $addEntryUrl ?>">add one</a></td></tr>
+<?php endif; ?>
+</tbody>
+</table>
+</div>

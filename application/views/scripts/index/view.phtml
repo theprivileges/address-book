@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * Display specific address book entry information
+ *
+ * @package Address_Book
+ * @author Luiz Lopes <luizlopes@gmail.com>
+ */
+?>
+<h2><?php echo $this->escape($this->title); ?></h2>
+<?php if ($this->formResponse):?>
+<p class="center notice"><?php echo $this->formResponse; ?></p>
+<?php endif; ?>
+<div id="sidebar" class="center"><a
+    href="<?php echo $this->url(array('controller' => 'index',
+                                      'action' => 'edit',
+                                      'id' => $this->escape($this->entry->id))); ?>"
+    class="button orange" title="Edit entry">Edit</a><br />
+<a
+    href="<?php echo $this->url(array('controller' => 'index',
+                                      'action' => 'delete',
+                                      'id' => $this->escape($this->entry->id))); ?>">delete</a>
+</div>
+<div id="content">
+<dl>
+    <dt>Name:</dt>
+    <dd>
+        <?php echo $this->escape($this->entry->firstname); ?>
+        <?php echo $this->escape($this->entry->lastname); ?>
+    </dd>
+    <dt>Email:</dt>
+    <dd><?php echo $this->escape($this->entry->email); ?></dd>
+    <dt>Phone:</dt>
+    <dd><?php echo $this->escape($this->entry->phone); ?></dd>
+    <dt>Address:</dt>
+    <dd><?php echo $this->escape($this->entry->address); ?></dd>
+</dl>
+</div>

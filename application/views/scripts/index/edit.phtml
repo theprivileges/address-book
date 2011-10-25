@@ -1,0 +1,21 @@
+<?php
+/**
+ * Address Book Application
+ *
+ * @package Address_Book
+ * @author Luiz Lopes <luizlopes@gmail.com>
+ */
+?>
+<h2><?php echo $this->escape($this->title); ?></h2>
+<?php if ($this->formResponse):?>
+<p class="center notice"><?php echo $this->formResponse; ?></p>
+<?php endif; ?>
+<div id="sidebar" class="center">
+    <a href="javascript: $('#address_form').submit();"
+       title="Save Changes" class="button orange">Save</a><br/>
+    <a href="<?php echo $this->url(array('controller' => 'index',
+                                         'action' => 'index')); ?>">cancel</a>
+</div>
+<div id="content">
+<?php echo $this->form; ?>
+</div>

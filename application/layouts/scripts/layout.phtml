@@ -1,0 +1,58 @@
+<?php
+/**
+ * Address Book Application
+ *
+ * HTML Layout structure for console, responsible for organizing all elements onto the page
+ *
+ * @package Address_Book
+ * @subpackage Layout
+ * @author luiz lopes <luizlopes@gmail.com>
+ */
+$this->headMeta()->setCharset('UTF-8');
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+$this->headTitle()->setSeparator(' - ');
+$this->headTitle('Address Book App');
+echo $this->doctype();
+echo "\n";
+?>
+<html lang="en">
+    <head>
+<?php
+echo $this->headMeta() . "\r\n";
+echo $this->headTitle() . "\r\n";
+$this->headLink()->prependStylesheet(
+        $this->baseUrl('/css/screen.css'), 'screen');
+echo $this->headStyle();
+echo $this->headLink();
+?>
+    </head>
+    <body>
+        <div id="wrap" class="container">
+            <div id="navigation" class="span-24 last">
+                <ul id="navigation-tabs">
+                    <li class="large">
+                        <a href="/">
+                            <span>Home</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- end #navigation --> <!--  end navigation -->
+            <div id="body" class="span-24 last inside">
+<?php foreach (Zend_Controller_Action_HelperBroker::getStaticHelper('flashMessenger')
+                ->getMessages() as $message) : ?>
+                <p class=" center notice"><?php echo $this->escape($message); ?></p>
+<?php endforeach; ?>
+                <?php echo $this->layout()->content; ?>
+            </div>
+            <!-- end #body --></div>
+        <!-- end #wrap -->
+        <div id="footer" class="last inside">
+            <p class="center">Address App &copy;2010</p>
+        </div>
+        <script type="text/javascript"
+                src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js">
+        </script>
+<?php echo $this->headScript(); ?>
+    </body>
+</html>
