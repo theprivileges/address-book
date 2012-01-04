@@ -144,15 +144,8 @@ class Application_Form_Addressbook extends Zend_Form
      */
     protected function toArray(Application_Model_Addressbook $entry)
     {
-        $data = array();
-        $data['id'] = $entry->id;
-        $data['firstname'] = $entry->firstname;
-        $data['lastname'] = $entry->lastname;
-        $data['address'] = $entry->address;
-        $data['phone'] = $entry->phone;
-        $data['email'] = $entry->email;
-
-        return $data;
+        if (is_object($entry)) $entry = get_object_vars($entry);
+        return is_array($entry) ? array_map(__FUNCTION__, $entry) : $entry;
     }
 
     /**
